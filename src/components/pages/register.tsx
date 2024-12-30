@@ -1,8 +1,8 @@
-import { useForm } from "react-hook-form";
 import { Repository } from "../../infrastructure/repository";
-import { useEffect, useState } from "react";
-import type { Skill } from "../../infrastructure/skill";
+import { useEffect, useState, useMemo } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import type { Skill } from "../../infrastructure/skill";
 
 type FormInputs = {
   userId: string;
@@ -16,7 +16,7 @@ type FormInputs = {
 
 export default function Register() {
   const navigate = useNavigate();
-  const repository = new Repository();
+  const repository = useMemo(() => new Repository(), []);
   const [skills, setSkills] = useState<Skill[]>([]);
   const {
     register,

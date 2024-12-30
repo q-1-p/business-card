@@ -4,7 +4,7 @@ import { FaSquareTwitter } from "react-icons/fa6";
 import { Repository } from "../../infrastructure/repository";
 import { SiQiita } from "react-icons/si";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import type { Skill } from "../../infrastructure/skill";
 import type { User } from "../../infrastructure/user";
 
@@ -14,7 +14,7 @@ export default function Cards() {
   const { id } = useParams();
   const [user, setUser] = useState<User | null>(null);
   const [skill, setSkill] = useState<Skill | null>(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCard = async () => {
       const { user, skill } = await repository.getCard(id ?? "");
@@ -29,7 +29,7 @@ export default function Cards() {
   }
   return (
     <>
-      <Box className="p-4">
+      <Box className="bg-white m-8 p-4">
         <h1 className="text-2xl font-bold py-2">{user.name}</h1>
         <div className="py-2">
           <h2 className="text-xl font-bold">自己紹介</h2>
@@ -63,6 +63,17 @@ export default function Cards() {
           ) : null}
         </div>
       </Box>
+      <div className="px-8">
+        <button
+          type="button"
+          className="bg-blue-500 text-white rounded-md p-2 w-full"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          戻る
+        </button>
+      </div>
     </>
   );
 }
