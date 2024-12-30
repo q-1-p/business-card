@@ -55,7 +55,6 @@ const Default = () => {
       </div>
       <button
         type="button"
-        onClick={handleNavigate}
         className="mt-2 p-2 bg-blue-500 text-white rounded-md w-full"
       >
         <Link to="/register">新規登録</Link>
