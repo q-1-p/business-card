@@ -1,2 +1,1 @@
-test("", async () => {
-}); 
+test("", async () => {});
