@@ -38,4 +38,35 @@ export class Repository {
 			);
 		return { user, skill };
 	};
+
+	getSkills = async (): Promise<Skill[]> =>
+		await supabase
+			.from("skills")
+			.select("*")
+			.then((response) =>
+				response.data ? response.data.map((skill) => new Skill(skill)) : [],
+			);
+
+	addUser = async (
+		userId: string,
+		name: string,
+		description: string,
+		skillId: number,
+		githubId?: string,
+		qiitaId?: string,
+		twitterId?: string,
+	) => {
+		await supabase.from("users").insert({
+			user_id: userId,
+			name,
+			description,
+			github_id: githubId,
+			qiita_id: qiitaId,
+			twitter_id: twitterId,
+		});
+		await supabase.from("user_skills").insert({
+			user_id: userId,
+			skill_id: skillId,
+		});
+	};
 }
