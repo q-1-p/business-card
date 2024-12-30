@@ -1,14 +1,18 @@
-import { Button } from "@chakra-ui/react"
+import { BrowserRouter, Link, Route, Routes } from "react-router";
+import Cards from "./components/pages/cards";
 
 function App() {
   return (
     <>
-      <Button className="bg-red-500">Button</Button>
-      <button className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600">
-        aaa
-      </button>
+      <BrowserRouter>
+        <Link to="/cards/1">Link</Link>
+        <br />
+        <Routes>
+          <Route path="/cards/:id" element={<Cards />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
