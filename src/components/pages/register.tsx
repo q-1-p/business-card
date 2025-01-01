@@ -14,7 +14,7 @@ type FormInputs = {
   twitterId: string;
 };
 
-export default function Register() {
+export const Register = () => {
   const navigate = useNavigate();
   const repository = useMemo(() => new Repository(), []);
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -60,17 +60,14 @@ export default function Register() {
           <div className="px-2">
             <input
               {...register("userId", {
-                pattern: {
-                  value: /^[a-zA-Z]+$/,
-                  message: "英語のみ入力可能です",
-                },
+                required: true,
               })}
               type="text"
               className="border-2 border-gray-400 rounded-md px-2 w-full"
               placeholder="例: apple"
             />
             {errors.userId && (
-              <span className="text-red-500">{errors.userId.message}</span>
+              <span className="text-red-500">ユーザIDは必須です</span>
             )}
           </div>
           <h2 className="text-md p-2">お名前 *</h2>
@@ -81,7 +78,7 @@ export default function Register() {
               className="border-2 border-gray-400 rounded-md px-2 w-full"
             />
             {errors.name && (
-              <span className="text-red-500">この項目は必須です</span>
+              <span className="text-red-500">名前は必須です *</span>
             )}
           </div>
           <h2 className="text-md p-2">自己紹介 *</h2>
@@ -93,7 +90,7 @@ export default function Register() {
               placeholder="<h1>Htmlタグも使えます</h1>"
             />
             {errors.introduction && (
-              <span className="text-red-500">この項目は必須です</span>
+              <span className="text-red-500">自己紹介は必須です</span>
             )}
           </div>
           <h2 className="text-md p-2">好きな技術</h2>
@@ -145,4 +142,4 @@ export default function Register() {
       </form>
     </>
   );
-}
+};

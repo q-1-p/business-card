@@ -10,7 +10,7 @@ import type { User } from "../../infrastructure/user";
 
 const repository = new Repository();
 
-export default function Cards() {
+export const Cards = () => {
   const { id } = useParams();
   const [user, setUser] = useState<User | null>(null);
   const [skill, setSkill] = useState<Skill | null>(null);
@@ -76,4 +76,4 @@ export default function Cards() {
       </div>
     </>
   );
-}
+};

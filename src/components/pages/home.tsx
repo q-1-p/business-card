@@ -1,6 +1,6 @@
 import { BrowserRouter, Link, Route, Routes, useNavigate } from "react-router";
-import Cards from "./cards";
-import Register from "./register";
+import { Cards } from "./cards";
+import { Register } from "./register";
 import { useState } from "react";
 
 export const Home = () => {
@@ -9,7 +9,7 @@ export const Home = () => {
       <Routes>
         <Route path="/" element={<Default />} />
         <Route path="/cards/:id" element={<Cards />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/cards/register" element={<Register />} />
         <Route path="/*" element={<div>404</div>} />
       </Routes>
     </BrowserRouter>
@@ -57,7 +57,7 @@ const Default = () => {
         type="button"
         className="mt-2 p-2 bg-blue-500 text-white rounded-md w-full"
       >
-        <Link to="/register">新規登録</Link>
+        <Link to="/cards/register">新規登録</Link>
       </button>
     </div>
   );
